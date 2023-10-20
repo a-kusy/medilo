@@ -23,5 +23,9 @@ namespace Medilo.API.Models
         public int AddressId { get; set; }
 
         public Address Address { get; set; }
+
+        public Doctor? Doctor { get; set; }
+
+        public Receptionist? Receptionist { get; set; }
     }
 }

@@ -29,6 +29,7 @@ namespace Medilo.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //many to many
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Roles)
                 .WithMany(e => e.Users)
@@ -38,6 +39,33 @@ namespace Medilo.API.Data
                 .HasMany(e => e.Specializations)
                 .WithMany(e => e.Doctors)
                 .UsingEntity<DoctorSpecializations>();
+
+            //one to one
+            modelBuilder.Entity<Doctor>()
+                .HasOne(d => d.Person)
+                .WithOne(p => p.Doctor)
+                .HasForeignKey<Doctor>(d => d.PersonId);
+
+            modelBuilder.Entity<Doctor>()
+                .HasOne(d => d.User)
+                .WithOne(u => u.Doctor)
+                .HasForeignKey<Doctor>(d => d.UserId);
+
+            modelBuilder.Entity<Receptionist>()
+                .HasOne(r => r.Person)
+                .WithOne(p => p.Receptionist)
+                .HasForeignKey<Receptionist>(r => r.PersonId);
+
+            modelBuilder.Entity<Receptionist>()
+                .HasOne(r => r.User)
+                .WithOne(u => u.Receptionist)
+                .HasForeignKey<Receptionist>(r => r.UserId);
+
+            //one to many
+            modelBuilder.Entity<Address>()
+                .HasMany(a => a.Persons)
+                .WithOne(p => p.Address)
+                .HasForeignKey(p => p.AddressId);
         }
     }
 }
