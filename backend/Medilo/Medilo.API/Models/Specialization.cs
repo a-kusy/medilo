@@ -12,6 +12,6 @@ namespace Medilo.API.Models
         public string Name { get; set; }
 
         [JsonIgnore]
-        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<Doctor>? Doctors { get; set; }
     }
 }
