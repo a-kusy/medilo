@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Medilo.API.Models;
 using Medilo.API.Controllers;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +43,8 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy(CustomRoles.Patient, policy => policy.RequireRole(CustomRoles.Patient));
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers();//.AddJsonOptions(x =>
+               // x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -57,6 +59,7 @@ builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IReceptionistRepository, ReceptionistRepository>();
 builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
+builder.Services.AddScoped<IPatientCardRepository, PatientCardRepository>();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.Configure<RequestLocalizationOptions>(options =>

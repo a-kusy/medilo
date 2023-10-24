@@ -27,6 +27,8 @@ namespace Medilo.API.Data
 
         public DbSet<DoctorSpecializations> DoctorSpecializations { get; set; }
 
+        public DbSet<PatientCard> PatientCards { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //many to many
@@ -60,6 +62,11 @@ namespace Medilo.API.Data
                 .HasOne(r => r.User)
                 .WithOne(u => u.Receptionist)
                 .HasForeignKey<Receptionist>(r => r.UserId);
+
+            modelBuilder.Entity<PatientCard>()
+                .HasOne(pc => pc.Person)
+                .WithOne(p => p.PatientCard)
+                .HasForeignKey<PatientCard>(pc => pc.PersonId);
 
             //one to many
             modelBuilder.Entity<Address>()

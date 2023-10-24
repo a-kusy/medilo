@@ -18,6 +18,8 @@ namespace Medilo.API.Helpers
             CreateMap<SpecializationDto, Specialization>();
             CreateMap<Address, AddressDto>();
             CreateMap<AddressDto, Address>();
+            CreateMap<PatientCard, PatientCardDto>();
+            CreateMap<PatientCardDto, PatientCard>();
         }
     }
 }
