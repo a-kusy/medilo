@@ -8,3 +8,4 @@ export const PatientCardForm = lazy(() => import('../auth/PatientCardForm.jsx'))
 export const Patient = lazy(() => import('../pages/Patient/index.jsx'));
 export const Doctor = lazy(() => import('../pages/Doctor/index.jsx'));
 export const DoctorSpecializationsForm = lazy(() => import('../auth/DoctorSpecializationsForm.jsx'));
+export const NotFound = lazy(() => import('../components/NotFound.jsx'));
