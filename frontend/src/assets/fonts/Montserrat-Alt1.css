@@ -1,0 +1,20 @@
+/** =================== Montserrat-Alt1 =================== **/
+
+/** Montserrat-Alt1 Thin **/
+@font-face {
+    font-family: "Montserrat-Alt1";
+    font-weight: 100;
+    font-style: normal;
+    src: url("MontserratAlt1-Thin.woff2") format("woff2"),
+         url("MontserratAlt1-Thin.woff") format("woff");
+}
+/* 
+
+/** Montserrat-Alt1 ExtraLight **/
+@font-face {
+    font-family: "Montserrat-Alt1";
+    font-weight: 200;
+    font-style: normal;
+    src: url("MontserratAlt1-ExtraLight.woff2") format("woff2"),
+         url("MontserratAlt1-ExtraLight.woff") format("woff");
+}
