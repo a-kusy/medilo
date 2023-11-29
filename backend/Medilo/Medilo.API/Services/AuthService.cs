@@ -40,25 +40,25 @@ namespace Medilo.API.Repositories
 
             string token = GenerateToken(user);
 
-            return AuthenticateResponse.Success(token, user.PESEL);
+            return AuthenticateResponse.Success(token, user.PESEL, user.Accepted);
         }
 
-        public async Task<RegistrationResponse> Register(RegistrationRequest request)
+        public async Task<AuthenticateResponse> Register(RegistrationRequest request)
         {
             if (request == null || request.Email == null || request.PESEL == null || request.Password == null)
-                return RegistrationResponse.Error("Registration failed");
+                return AuthenticateResponse.Error("Registration failed");
 
             bool peselExist = await _userRepository.PeselExist(request.PESEL);
             bool emailExist = await _userRepository.EmailExist(request.Email);
 
-            if (peselExist || emailExist) return RegistrationResponse.Error("Email or PESEL already exist");
+            if (peselExist || emailExist) return AuthenticateResponse.Error("Email or PESEL already exist");
 
-            if (!VerifyPesel(request.PESEL)) return RegistrationResponse.Error("Invalid PESEL");
+            if (!VerifyPesel(request.PESEL)) return AuthenticateResponse.Error("Invalid PESEL");
 
             Role? role = await _roleRepository.GetByNameAsync(request.Role);
 
             string hashedPassword = HashPassword(request.Password);
-
+            Console.WriteLine(request.Role);
             var user = new User
             {
                 PESEL = request.PESEL,
@@ -68,9 +68,11 @@ namespace Medilo.API.Repositories
                 Roles = new List<Role> { role }
             };
 
-            await _userRepository.AddAsync(user);
+            User addedUser = await _userRepository.AddAsync(user);
 
-            return RegistrationResponse.Success(user.PESEL);
+            string token = GenerateToken(user);
+
+            return AuthenticateResponse.Success(token, addedUser.PESEL, addedUser.Accepted );
         }
 
         private string HashPassword(string password)

@@ -18,7 +18,7 @@ namespace Medilo.API.Controllers
 
         [Route("register")]
         [HttpPost]
-        public async Task<ActionResult<User>> Register([FromBody]RegistrationRequest user)
+        public async Task<ActionResult<AuthenticateResponse>> Register([FromBody]RegistrationRequest user)
         {
             var res = await _authService.Register(user);
             return Ok(res);
@@ -28,6 +28,7 @@ namespace Medilo.API.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthenticateResponse>> Login([FromBody]AuthenticateRequest request)
         {
+            Console.WriteLine("log");
             var res = await _authService.Login(request);
             return Ok(res);
         }

@@ -4,7 +4,7 @@ namespace Medilo.API.Services
 {
     public interface IAuthService
     {
-        Task<RegistrationResponse> Register(RegistrationRequest request);
+        Task<AuthenticateResponse> Register(RegistrationRequest request);
         Task<AuthenticateResponse> Login(AuthenticateRequest request);
     }
 }
