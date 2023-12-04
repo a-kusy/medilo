@@ -50,7 +50,7 @@ namespace Medilo.API.Repositories
 
             foreach (var spec in doctorDto.Specializations)
             {
-                Specialization? specialization = await _specializationRepository.GetByNameAsync(spec);
+                Specialization? specialization = await _specializationRepository.GetAsync(spec.Id);
                 specializations.Add(specialization);
             }
 
@@ -59,5 +59,16 @@ namespace Medilo.API.Repositories
 
             return await AddAsync(doctor);
         }
+
+        public async Task<List<Specialization>> GetDoctorSpecializations(int id)
+        {
+            var doctor = await _context.Doctors
+                .Where(d => d.Id == id)
+                .Include(d => d.Specializations)
+                .FirstOrDefaultAsync();
+
+            return doctor?.Specializations?.ToList() ?? new List<Specialization>();
+        }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Medilo.API.Repositories.Contracts;
 using Medilo.API.Models.DTO;
 using Medilo.API.Models;
@@ -49,5 +48,10 @@ namespace Medilo.API.Controllers
             return Ok();
         }
 
+        [HttpGet("specializations/{id}")]
+        public async Task<ActionResult<IEnumerable<Specialization>>> GetDoctorSpecializations(int id)
+        {
+            return await _doctorRepository.GetDoctorSpecializations(id);
+        }
     }
 }

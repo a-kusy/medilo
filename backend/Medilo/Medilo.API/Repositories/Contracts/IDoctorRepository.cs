@@ -8,5 +8,6 @@ namespace Medilo.API.Repositories.Contracts
         Task<Doctor> Get(int id);
         Task<Doctor> GetByUserId(int userId);
         Task<List<Doctor>> GetAll();
+        Task<List<Specialization>> GetDoctorSpecializations(int id);
     }
 }
