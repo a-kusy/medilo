@@ -29,6 +29,12 @@ namespace Medilo.API.Data
 
         public DbSet<PatientCard> PatientCards { get; set; }
 
+        public DbSet<Schedule> Schedules { get; set; }
+
+        public DbSet<DayOfTheWeek> DayOfTheWeek { get; set; }
+
+        public DbSet<ScheduleValidityPeriod> SchedulesValidityPeriod { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //many to many
@@ -73,6 +79,26 @@ namespace Medilo.API.Data
                 .HasMany(a => a.Persons)
                 .WithOne(p => p.Address)
                 .HasForeignKey(p => p.AddressId);
+
+            modelBuilder.Entity<DayOfTheWeek>()
+                .HasMany(d => d.Schedules)
+                .WithOne(s => s.DayOfTheWeek)
+                .HasForeignKey(s => s.DayOfTheWeekId);
+
+            modelBuilder.Entity<ScheduleValidityPeriod>()
+                .HasMany(sv => sv.Schedules)
+                .WithOne(s => s.ScheduleValidityPeriod)
+                .HasForeignKey(s => s.ScheduleValidityPeriodId);
+
+            modelBuilder.Entity<Specialization>()
+                .HasMany(sp => sp.Schedules)
+                .WithOne(s => s.Specialization)
+                .HasForeignKey(s => s.SpecializationId);
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.SchedulesValidityPeriod)
+                .WithOne(s => s.Doctor)
+                .HasForeignKey(s => s.DoctorId);
         }
     }
 }

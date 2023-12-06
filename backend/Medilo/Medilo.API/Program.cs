@@ -14,7 +14,10 @@ using Medilo.API.Controllers;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myAllowSpecificOrigins", policy => { policy.WithOrigins("http://localhost:3000"); });
+});
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -60,6 +63,9 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IReceptionistRepository, ReceptionistRepository>();
 builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
 builder.Services.AddScoped<IPatientCardRepository, PatientCardRepository>();
+builder.Services.AddScoped<IDayOfTheWeekRepository, DayOfTheWeekRepository>();
+builder.Services.AddScoped<IScheduleValidityPeriodRepository, ScheduleValidityPeriodRepository>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -83,7 +89,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

@@ -20,6 +20,12 @@ namespace Medilo.API.Helpers
             CreateMap<AddressDto, Address>();
             CreateMap<PatientCard, PatientCardDto>();
             CreateMap<PatientCardDto, PatientCard>();
+            CreateMap<Schedule, ScheduleDto>();
+            CreateMap<ScheduleDto, Schedule>()
+                .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.StartTime)))
+                .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.EndTime)));
+            CreateMap<ScheduleValidityPeriod, ScheduleValidityPeriodDto>();
+            CreateMap<ScheduleValidityPeriodDto, ScheduleValidityPeriod>();
         }
     }
 }
