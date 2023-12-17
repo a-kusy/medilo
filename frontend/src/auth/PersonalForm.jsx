@@ -1,7 +1,13 @@
+import Cookies from "js-cookie";
 import { useState } from "react"
 import { performRequest } from '../api/config';
+import { useNavigate } from "react-router-dom";
+import { hasRole } from "../helpers";
+import { ROLES } from "../const/roles";
+import { toast } from 'react-toastify';
 
 const PersonalForm = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState({
         name: "",
         surname: "",
@@ -12,8 +18,8 @@ const PersonalForm = () => {
         street: "", 
         city: "",
         postalCode: "",
-        houseNumber: 0,
-        apartmentNumber: undefined
+        houseNumber: "",
+        apartmentNumber: ""
     })
 
     const handleForm = async (e) =>{
@@ -24,9 +30,20 @@ const PersonalForm = () => {
             address: address
         }
 
-        await performRequest('Persons', 'post', reqData);
+        const res = await performRequest('Persons', 'post', reqData);
         
-        window.location = "/account"
+        if(res != null && res !== undefined){
+            Cookies.set('personId', res.id, {
+                sameSite: 'lax',
+                secure: true
+              })
+
+            if(hasRole(ROLES.DOCTOR)) navigate('/doctor-specializations-form')
+            if(hasRole(ROLES.PATIENT)) navigate('/patient-card-form')  
+        }
+        else{
+            toast.warn('Nie udało się zapisać danych.')
+        } 
     }
 
     const handleChange = ({ currentTarget: input }) => {
@@ -38,7 +55,7 @@ const PersonalForm = () => {
       };
 
     return (
-        <div className="auth-panel">
+        <div className="auth-panel"> 
             <form onSubmit={handleForm} className="personal-form">
                 <div className="flex-cont">
                 <div className="flex-1">
