@@ -2,18 +2,22 @@ import { useState, useEffect } from "react"
 import { performRequest } from "../../api/config"
 import { PiPlusCircleLight, PiXCircleThin } from "react-icons/pi"
 import { toast } from 'react-toastify';
-import { getToken } from "../../helpers";
+import { getToken, getUser } from "../../helpers";
 
 const AddSchedule = () => {
     const [schedules, setSchedules] = useState([{ startTime: '', endTime: '', dayOfTheWeekId: '', specializationId: '', scheduleValidityPeriodId: '' }])
     const [validityPeriod, setValidityPeriod] = useState({ startDate: '', endDate: '', doctorId: '' })
     const [specializations, setSpecializations] = useState([])
     const [daysOfTheWeek, setDaysOTheWeek] = useState([])
+    const [doctorId, setDoctorId] = useState('')
     const token = getToken()
+    const user = getUser()
 
     useEffect(() => {
         const fetchData = async () => {
-            const specializations = await getSpecializations()
+            const doctor = await getDoctor()
+            setDoctorId(doctor.id)
+            const specializations = await getSpecializations(doctor.id)
             const days = await getDaysOfTheWeek()
 
             setSpecializations(specializations)
@@ -23,9 +27,13 @@ const AddSchedule = () => {
         fetchData();
     }, []);
 
-    const getSpecializations = async () => {
-        const doctorId = 5
+    const getDoctor = async () => {
+        const res = await performRequest('Doctors/userId/' + user.id, 'get', token)
 
+        if (res != null && res !== undefined) return res
+    }
+
+    const getSpecializations = async (doctorId) => {
         const res = await performRequest('Doctors/specializations/' + doctorId, 'get')
 
         if (res != null && res !== undefined) return res
@@ -41,7 +49,7 @@ const AddSchedule = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        validityPeriod.doctorId = 5
+        validityPeriod.doctorId = doctorId
         const validityPeriodres = await performRequest('ScheduleValidityPeriod', 'post', validityPeriod, token)
 
         if (validityPeriodres != null && validityPeriod !== undefined) {

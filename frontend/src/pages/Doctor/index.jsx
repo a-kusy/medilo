@@ -5,15 +5,15 @@ const size = 80
 
 const Doctor = () =>{
     return (
-        <div class="menu menu-doctor">
+        <div className="menu menu-doctor">
             <NavLink to="/">
-                <div class="menu-item">
+                <div className="menu-item">
                     <p>WIZYTY</p>
                     <PiIdentificationCardThin size={size}/>
                 </div>
             </NavLink>
-            <NavLink to="/">
-                <div class="menu-item">
+            <NavLink to="/schedule">
+                <div className="menu-item">
                     <p>GRAFIK</p>
                     <PiCalendarBlankThin size={size}/>
                 </div>
