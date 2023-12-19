@@ -1,9 +1,9 @@
-import PropagateLoader from 'react-spinners/PropagateLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const Loader = () => {
     return(
         <div>
-            <PropagateLoader loading={true} size={150} color='#8E9E9E'/>
+            <ClipLoader loading={true} size={100} color='#8E9E9E'/>
         </div>
     );
 }
