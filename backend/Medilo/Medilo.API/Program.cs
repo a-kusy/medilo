@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Medilo.API.Models;
-using Medilo.API.Controllers;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -66,6 +64,7 @@ builder.Services.AddScoped<IPatientCardRepository, PatientCardRepository>();
 builder.Services.AddScoped<IDayOfTheWeekRepository, DayOfTheWeekRepository>();
 builder.Services.AddScoped<IScheduleValidityPeriodRepository, ScheduleValidityPeriodRepository>();
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.Configure<RequestLocalizationOptions>(options =>

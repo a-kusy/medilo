@@ -13,5 +13,11 @@ namespace Medilo.API.Models
 
         [JsonIgnore]
         public ICollection<Doctor>? Doctors { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Schedule>? Schedules { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Appointment>? Appointments { get; set;}
     }
 }

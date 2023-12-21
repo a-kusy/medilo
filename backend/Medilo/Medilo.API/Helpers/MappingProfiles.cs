@@ -26,6 +26,8 @@ namespace Medilo.API.Helpers
                 .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.EndTime)));
             CreateMap<ScheduleValidityPeriod, ScheduleValidityPeriodDto>();
             CreateMap<ScheduleValidityPeriodDto, ScheduleValidityPeriod>();
+            CreateMap<Appointment, AppointmentDto>();
+            CreateMap<AppointmentDto, Appointment>();
         }
     }
 }

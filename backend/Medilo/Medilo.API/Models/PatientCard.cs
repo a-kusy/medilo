@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Medilo.API.Models
 {
@@ -24,6 +25,9 @@ namespace Medilo.API.Models
         public string? AttendingPhysician { get; set; }
 
         public string? MedicalInsurance { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Appointment>? Appointments { get; set; }
        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Medilo.API.Models
 {
@@ -18,5 +19,10 @@ namespace Medilo.API.Models
         public Person Person { get; set; }
 
         public ICollection<Specialization> Specializations { get; set; }
+
+        public ICollection<ScheduleValidityPeriod>? SchedulesValidityPeriod { get; set;}
+
+        [JsonIgnore]
+        public ICollection<Appointment>? Appointments { get; set; }
     }
 }

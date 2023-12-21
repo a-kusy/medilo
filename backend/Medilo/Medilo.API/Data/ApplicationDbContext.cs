@@ -35,6 +35,8 @@ namespace Medilo.API.Data
 
         public DbSet<ScheduleValidityPeriod> SchedulesValidityPeriod { get; set; }
 
+        public DbSet<Appointment> Appointments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //many to many
@@ -99,6 +101,21 @@ namespace Medilo.API.Data
                 .HasMany(d => d.SchedulesValidityPeriod)
                 .WithOne(s => s.Doctor)
                 .HasForeignKey(s => s.DoctorId);
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.Appointments)
+                .WithOne(a => a.Doctor)
+                .HasForeignKey(a => a.DoctorId);
+
+            modelBuilder.Entity<PatientCard>()
+                .HasMany(p => p.Appointments)
+                .WithOne(a => a.PatientCard)
+                .HasForeignKey(a => a.PatientCardId);
+
+            modelBuilder.Entity<Specialization>()
+                .HasMany(s => s.Appointments)
+                .WithOne(a => a.Specialization)
+                .HasForeignKey(a => a.SpecializationId);
         }
     }
 }
