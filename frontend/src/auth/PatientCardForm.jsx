@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import { useAuth } from '../context/AuthContext'
-import { usePerson } from '../context/PersonContext'
+import { useState, useEffect } from 'react'
 import { getGenderFromPesel } from '../helpers/Validator'
+import { performRequest } from '../api/config'
+import { getUser, getToken, getPersonId } from '../helpers'
+import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify';
 
 const PatientCardForm = () => {
-    const { user } = useAuth()
-    const { personalData } = usePerson()
-    const u = user.user
-    const p = personalData.person
-
-    const gender = getGenderFromPesel(u.pesel)
+    const token = getToken()
+    const personId = getPersonId()
+    const [person, setPerson] = useState({})
+    const navigate = useNavigate
 
     const [data, setData] = useState({
-        sex: gender,
-        pesel: u.pesel,
-        personId: 1,
+        sex: '',
+        pesel: '',
+        personId: personId,
         processingOfPersonalData: false,
         attendingPhysician: "",
         medicalInsurance: ""
     })
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const p = await performRequest('Persons/' + personId, 'get', token)
+            setPerson(p)
+
+            const decodedToken = getUser()
+            const user = await performRequest('Users/' + decodedToken.id, 'get', token); 
+
+            data.pesel = user.pesel
+            data.sex = getGenderFromPesel(user.pesel)
+        }
+
+        fetchData()
+    }, []);
+
     const handleChange = ({ currentTarget: input }) => {
-        setData({ ...data, [input.name]: input.value })
+        let value = input.value
+
+        if (input.name === 'processingOfPersonalData') {
+            value = input.checked;
+          }
+
+        setData({ ...data, [input.name]: value })
     };
+
+    const handleForm = async (e) => {
+        e.preventDefault()
+
+        data.processingOfPersonalData = e.target.checked;
+
+        const res = await performRequest('PatientCards', 'post', data);
+
+        if (res != null && res !== undefined) {
+            toast.success('Karta założona poprawnie')
+            navigate('/patient')
+        }
+        else{
+            toast.warn('Nie udało się założyć karty.')
+        }
+    }
 
     return (
         <div className="auth-panel flex-cont-col">
             <div className='patient-card-form-title'>
-                <p>{p.name}  {p.surname}</p>
+                <p>{person.name}  {person.surname}</p>
             </div>
-            <form className='patient-card-form'>
+            <form className='patient-card-form' onSubmit={handleForm}>
                 <input
                     type="text"
                     name='attendingPhysician'
