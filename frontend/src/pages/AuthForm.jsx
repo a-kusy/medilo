@@ -16,6 +16,7 @@ const AuthForm = () => {
             <Login/>
             <div className='small-side'>
               <img src='/medilo-logo.png' alt='logo' className='auth-logo'></img><br></br>
+              <p>Nie masz jeszcze konta?</p>
               <button className="button" onClick={togglePanel}>REJESTRACJA</button>
             </div>
           </>
@@ -23,6 +24,7 @@ const AuthForm = () => {
           <>
             <div className='small-side-reg'>
               <img src='/medilo-logo.png' alt='logo' className='auth-logo'></img><br></br>
+               <p>Masz już konto?</p>
               <button className="button" onClick={togglePanel}>LOGOWANIE</button>
             </div>   
             <Registration/>
