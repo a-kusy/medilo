@@ -1,0 +1,55 @@
+.radio-button {
+    margin: 0px;
+    width: 10%;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid $primary-dark;
+    font-family: $font;
+    font-weight: 100;
+    background: none;
+    padding: 5px 10px;
+    margin: 20px;
+    width: 70%;
+
+    &:focus {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid $primary-dark;
+    }
+}
+
+select {
+    border: none;
+    border-bottom: 1px solid $primary-dark;
+    font-family: $font;
+    font-weight: 100;
+    background: none;
+    padding: 5px 10px;
+    margin: 20px;
+    width: 20%;
+    color: $primary-dark;
+
+    option {
+        padding-top: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+button {
+    background: $primary-dark;
+    color: white;
+    border: none;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 10px 15px;
+    text-align: center;
+    width: 170px;
+    cursor: pointer;
+
+    &:hover {
+        background: darken($primary-dark, 5%);
+    }
+}

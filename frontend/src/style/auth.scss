@@ -1,0 +1,209 @@
+.auth-panel {
+    display: flex;
+    text-align: center;
+    width: 70%;
+    height: 450px;
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: auto;
+}
+
+.login-form {
+    flex: 60%;
+    height: auto;
+    padding-top: 50px;
+    background-color: $background-light;
+
+    input {
+        padding-top: 20px;
+    }
+
+    button {
+        margin-top: 120px;
+    }
+}
+
+.registration-form {
+    flex: 60%;
+    height: auto;
+    padding-top: 35px;
+    background-color: white;
+
+    input {
+        padding-top: 0px;
+    }
+
+    button {
+        margin-top: 80px;
+    }
+}
+
+.small-side {
+    flex: 40%;
+    height: auto;
+    text-align: center;
+    background-color: white;
+
+    p {
+        margin-top: 100px;
+    }
+}
+
+.small-side-reg {
+    flex: 40%;
+    height: 100%;
+    background-color: $background-light;
+
+    p {
+        margin-top: 100px;
+    }
+}
+
+.auth-logo {
+    width: 150px;
+    height: auto;
+    padding-top: 50px;
+}
+
+.personal-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+
+    button {
+        margin: auto;
+        margin-bottom: 65px;
+    }
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 74%;
+    margin: auto;
+}
+
+.input-left {
+    flex: 50%;
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.input-right {
+    flex: 50%;
+    margin-right: 0px;
+}
+
+.input-left, .input-right {
+    width: 100%;
+}
+
+.patient-card-form {
+    align-items: start;
+    width: 80%;
+    margin: auto;
+    text-align: left;
+    margin-top: 20px;
+
+    button {
+        display: block;
+        margin: auto;
+    }
+
+
+    .checkbox {
+        display: flex;
+        align-items: start;
+        margin-bottom: 20px;
+
+        p {
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        input {
+            flex: 10%;
+        }
+    }
+}
+
+
+.patient-card-form-title {
+    width: 80%;
+    display: flex;
+    border: none;
+    border-bottom: 1px solid $primary-dark;
+    margin: auto;
+    padding: 20px 0 10px 0;
+    margin-bottom: 0;
+    margin-top: 20px;
+
+    p {
+        margin: 0 20px;
+        font-size: 20px;
+    }
+}
+
+.doctor-specializations-form {
+    width: 80%;
+    margin: auto;
+    text-align: left;
+    margin-top: 20px;
+
+    select {
+        border: none;
+        border-bottom: 1px solid $primary-dark;
+        font-family: $font;
+        font-weight: 100;
+        background: none;
+        padding: 5px 10px;
+        margin: 20px;
+        width: 90%;
+        color: $primary-dark;
+
+        option {
+            padding-top: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    button {
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+    }
+}
+
+
+@media screen and (max-width: $tablet) {
+    .auth-panel {
+        width: 80%;
+    }
+
+    .input-container {
+        width: 77%;
+    }
+}
+
+@media screen and (max-width: $mobile) {
+    .auth-panel {
+        flex-direction: column;
+        height: auto;
+
+        button {
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+    }
+
+    .flex-cont {
+        flex-direction: column;
+    }
+
+    .input-container {
+        width: 75%;
+    }
+}

@@ -1,0 +1,245 @@
+@import url("../assets/fonts/Montserrat-Alt1.css");
+
+body {
+    font-family: $font;
+    color: $primary-dark;
+    font-weight: $default-weight;
+    min-height: 100vh;
+    font-style: normal;
+    font-variant: normal;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+::selection {
+    background-color: $primary-light;
+    color: white;
+}
+
+
+//HEADER
+.header {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-bottom: 1px solid $primary-dark;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.header-title {
+    font-family: 'Montserrat-Alt1', sans-serif;
+    font-weight: 100;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.header ul {
+    list-style-type: none;
+}
+
+.header ul li {
+    display: inline;
+    padding: 10px;
+
+}
+
+.header ul li a {
+    font-size: 16px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.header a {
+    text-decoration: none;
+    color: $primary-dark;
+    padding: 5px;
+    font-weight: 300;
+
+    &:after {
+        color: $primary-dark;
+    }
+}
+
+.header-dropdown {
+    display: inline-block;
+
+    button {
+        display: none;
+        position: absolute;
+        box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+        background-color: white;
+        color: $primary-dark;
+        padding: 10px;
+        width: 100px;
+        margin-top: 5px;
+    }
+
+    &:hover {
+        button {
+            display: block;
+        }
+    }
+}
+
+.logo {
+    height: 30px;
+    width: auto;
+}
+
+//FOOTER
+.footer {
+    height: auto;
+    width: 90%;
+    padding-top: 40px;
+    margin: auto;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    border-bottom: 1px solid $primary-dark;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.media a {
+    color: $primary-dark;
+
+    &:hover {
+        color: darken($primary-dark, 5%);
+    }
+}
+
+
+//home page main
+.home-cont-left {
+    flex: 60%;
+    background-color: $primary-dark;
+    color: white;
+
+    p {
+        text-align: justify;
+        padding: 10px 20px;
+        font-size: 20px;
+    }
+
+    button {
+        background-color: white;
+        color: $primary-dark;
+        margin: 5px;
+        font-weight: 300;
+
+        &:hover {
+            background: darken(white, 5%);
+        }
+    }
+}
+
+.home-cont-right {
+    flex: 40%;
+
+    h1 {
+        font-family: $font-title;
+        font-weight: 200;
+    }
+}
+
+.flex-cont {
+    display: flex;
+}
+
+.flex-cont-col {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 50%;
+}
+
+//sidebar
+.sidebar {
+    top: 50px;
+}
+
+.sidebar a {
+    position: absolute;
+    left: -10px;
+    transition: 0.3s;
+    padding: 10px;
+    width: 70px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    border: 1px solid $primary-light;
+    text-align: center;
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+        left: 0;
+    }
+}
+
+//akordeon
+.accordion-container {
+    width: 80%;
+    margin: auto;
+}
+
+.accordion {
+    background-color: rgba(255, 255, 255, 0.9);
+    ;
+    cursor: pointer;
+    padding: 14px;
+    width: 100%;
+    border-bottom: 1px solid $primary-dark;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    margin: auto;
+}
+
+.panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796";
+}
