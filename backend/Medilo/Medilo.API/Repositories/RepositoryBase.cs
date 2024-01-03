@@ -50,5 +50,11 @@ namespace Medilo.API.Repositories
             context.Update(entity);
             await context.SaveChangesAsync();
         }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await context.AddRangeAsync(entities);
+            await context.SaveChangesAsync();
+        }
     }
 }
