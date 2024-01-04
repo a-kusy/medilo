@@ -31,13 +31,11 @@ namespace Medilo.API.Controllers
         }
 
         // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditUser([FromBody]User user)
+        public async Task<IActionResult> UpdateUser(int id,[FromBody] AuthenticateRequest user)
         {
-            await _userRepository.UpdateAsync(user);
-
-            return NoContent();
+            await _userRepository.UpdateUser(id, user);
+            return Ok();
         }
 
 

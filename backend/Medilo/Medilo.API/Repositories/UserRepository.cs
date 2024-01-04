@@ -51,5 +51,18 @@ namespace Medilo.API.Data.Repositories
         {
             return await _context.Users.Include(u => u.Roles).SingleAsync(u => u.PESEL == pesel);
         }
+
+        public async Task UpdateUser(int id, AuthenticateRequest userDto)
+        {
+            User user = await GetAsync(id);
+            if (user != null)
+            {
+                user.Email = userDto.Email;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password, BCrypt.Net.BCrypt.GenerateSalt());
+
+                await UpdateAsync(user);
+            }
+           
+        }
     }
 }

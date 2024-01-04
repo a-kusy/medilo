@@ -10,5 +10,6 @@ namespace Medilo.API.Repositories.Contracts
         Task AcceptUser(int id);
         Task<User> GetByEmailAsync(string email);
         Task<User> GetByPeselAsync(string pesel);
+        Task UpdateUser(int id, AuthenticateRequest user);
     }
 }

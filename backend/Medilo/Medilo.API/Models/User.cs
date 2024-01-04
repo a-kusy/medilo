@@ -21,6 +21,12 @@ namespace Medilo.API.Models
         [Required]
         public bool Accepted { get; set; }
 
-        public ICollection<Role> Roles { get; set; } 
+        public ICollection<Role> Roles { get; set; }
+
+        [JsonIgnore]
+        public Doctor? Doctor { get; set; }
+
+        [JsonIgnore]
+        public Receptionist? Receptionist { get; set; }
     }
 }
