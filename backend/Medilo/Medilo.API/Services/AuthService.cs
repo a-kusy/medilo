@@ -32,11 +32,11 @@ namespace Medilo.API.Repositories
 
             User user = await _userRepository.GetByEmailAsync(request.Email);
 
-            if (!user.Accepted) return AuthenticateResponse.Error("Account is not accepted");
-
             bool IsVerified = BCrypt.Net.BCrypt.Verify(request.Password, user.Password);
 
             if (!IsVerified) return AuthenticateResponse.Error("Invalid password");
+
+            if (!user.Accepted) return AuthenticateResponse.Error("Account is not accepted");
 
             string token = GenerateToken(user);
 

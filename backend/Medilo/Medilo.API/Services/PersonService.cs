@@ -57,7 +57,7 @@ namespace Medilo.API.Services
             try
             {
                 Person person = await _personRepository.GetAsync(id);
-                Console.WriteLine("2");
+
                 if (person != null)
                 {
                     PersonDto personDto = personAddress.Person;
