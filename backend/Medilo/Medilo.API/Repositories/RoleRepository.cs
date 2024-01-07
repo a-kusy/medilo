@@ -16,8 +16,7 @@ namespace Medilo.API.Repositories
 
         public async Task<Role> GetByNameAsync(string roleName)
         {
-            var role = await _context.Roles.SingleOrDefaultAsync(x => x.Name == roleName);
-            return role;
+            return await _context.Roles.SingleOrDefaultAsync(x => x.Name == roleName);
         }
     }
 }
