@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Medilo.API.Models
 {
@@ -24,8 +25,13 @@ namespace Medilo.API.Models
 
         public Address Address { get; set; }
 
+        [JsonIgnore]
         public Doctor? Doctor { get; set; }
 
+        [JsonIgnore]
         public Receptionist? Receptionist { get; set; }
+
+        [JsonIgnore]
+        public PatientCard? PatientCard { get; set; }
     }
 }
