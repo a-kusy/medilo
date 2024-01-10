@@ -30,7 +30,7 @@ namespace Medilo.API.Repositories
         {
             return _context.SchedulesValidityPeriod
                 .Where(s => s.DoctorId == id)
-                .Include(s => s.Schedules)
+                .Include(s => s.Schedules).ThenInclude(schedule => schedule.Specialization)
                 .ToListAsync();
         }
 

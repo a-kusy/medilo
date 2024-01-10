@@ -19,6 +19,6 @@ namespace Medilo.API.Models
 
         public Doctor Doctor { get; set; }
 
-        public ICollection<Schedule>? Schedules { get; set;}
+        public ICollection<Schedule> Schedules { get; set;}
     }
 }
