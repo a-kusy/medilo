@@ -22,7 +22,7 @@ namespace Medilo.API.Controllers
             return await _repository.Add(scheduleValidityPeriodDto);
         }
 
-        [HttpGet("{doctorId}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<ScheduleValidityPeriod>>> GetByDoctorId(int id)
         {
             return await _repository.GetByDoctorId(id);

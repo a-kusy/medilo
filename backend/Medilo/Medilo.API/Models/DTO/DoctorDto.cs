@@ -1,4 +1,6 @@
-﻿namespace Medilo.API.Models.DTO
+﻿using Medilo.API.Models;
+
+namespace Medilo.API.Models.DTO
 {
     public class DoctorDto
     {
@@ -6,6 +8,6 @@
 
         public int PersonId { get; set; }
 
-        public List<string> Specializations { get; set; }
+        public List<Specialization> Specializations { get; set; }
     }
 }

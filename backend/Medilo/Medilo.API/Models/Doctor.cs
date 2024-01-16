@@ -24,5 +24,8 @@ namespace Medilo.API.Models
 
         [JsonIgnore]
         public ICollection<Appointment>? Appointments { get; set; }
+
+        [JsonIgnore]
+        public ICollection<AvailableAppointment>? AvailableAppointments { get; set; }
     }
 }

@@ -29,9 +29,9 @@ namespace Medilo.API.Controllers
         }
 
         [HttpGet("userId/{id}")]
-        public async Task<Doctor> GetDoctorByUserId(int userId)
+        public async Task<Doctor> GetDoctorByUserId(int id)
         {
-            return await _doctorRepository.GetByUserId(userId);
+            return await _doctorRepository.GetByUserId(id);
         }
 
 
